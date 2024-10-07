@@ -19,12 +19,16 @@ public class DebtsController implements Observer {
 	public DebtsController(QueTeDebo queTeDebo, DebtsView debtsView) {
 		this.debtsView = debtsView;
 		this.queTeDebo = queTeDebo;
-		this.queTeDebo.addObserver(this);
-		debts = this.queTeDebo.getDebts();
+		queTeDebo.addObserver(this);
+		debts = queTeDebo.getDebts(); //Repeticion?
 	}
 
 	public void pay() {
-		this.queTeDebo.pay(debts);
+		try {
+			queTeDebo.pay(debts);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public List<Debt> getDebts() {
@@ -36,15 +40,15 @@ public class DebtsController implements Observer {
 	}
 
 	public void addActionButtonPay(JButton buttonPay) {
-		this.debtsView.getButtonPay().addActionListener(new ActionListener() {
+		debtsView.getButtonPay().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				pay();
 			}
 		});
 	}
 
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
+	public void update(Observable o, Object arg) {
+		debts = queTeDebo.getDebts();
 	}
 
 }

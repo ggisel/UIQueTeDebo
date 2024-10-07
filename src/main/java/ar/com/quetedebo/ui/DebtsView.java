@@ -4,11 +4,17 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 import ar.com.quetedebo.core.Debt;
 import ar.com.quetedebo.core.QueTeDebo;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 
 public class DebtsView extends JFrame implements Observer {
 	private static final long serialVersionUID = 1L;
@@ -23,12 +29,10 @@ public class DebtsView extends JFrame implements Observer {
     private javax.swing.JPanel panelNotDebts;
     private javax.swing.JTable tableDebts;
 	
-    private QueTeDebo queTeDebo;
 	private DebtsController debtsController;
 
 	public DebtsView(QueTeDebo queTeDebo) {
-		this.queTeDebo = queTeDebo;
-		this.queTeDebo.addObserver(this);
+		queTeDebo.addObserver(this);
 		this.debtsController = new DebtsController(queTeDebo, this);
 		
 		initComponents();
@@ -57,7 +61,7 @@ public class DebtsView extends JFrame implements Observer {
 
             },
             new String [] {
-                "Descripción", "Pagar a", "Monto"
+                "Descripciï¿½n", "Pagar a", "Monto"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -76,92 +80,45 @@ public class DebtsView extends JFrame implements Observer {
         labelDebts.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelDebts.setText("Vas a pagar las siguientes deudas");
 
-        javax.swing.GroupLayout panelDebtsLayout = new javax.swing.GroupLayout(panelDebts);
-        panelDebts.setLayout(panelDebtsLayout);
-        panelDebtsLayout.setHorizontalGroup(
-            panelDebtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelDebtsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelDebtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelDebtsLayout.createSequentialGroup()
-                        .addComponent(labelDebts, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(panelDebtsLayout.createSequentialGroup()
-                        .addGroup(panelDebtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(buttonPay)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        panelDebtsLayout.setVerticalGroup(
-            panelDebtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelDebtsLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelDebts)
-                .addGap(19, 19, 19)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonPay)
-                .addGap(117, 117, 117))
-        );
-
         labelNotDebts.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        labelNotDebts.setText("No tenés deudas para pagar");
-
-        javax.swing.GroupLayout panelNotDebtsLayout = new javax.swing.GroupLayout(panelNotDebts);
-        panelNotDebts.setLayout(panelNotDebtsLayout);
-        panelNotDebtsLayout.setHorizontalGroup(
-            panelNotDebtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelNotDebtsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelNotDebts, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
-        );
-        panelNotDebtsLayout.setVerticalGroup(
-            panelNotDebtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelNotDebtsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelNotDebts)
-                .addContainerGap(13, Short.MAX_VALUE))
-        );
+        labelNotDebts.setText("No tenï¿½s deudas para pagar");
 
         menuDebts.setText("Gastos");
         menuQTD.add(menuDebts);
 
-        menuPaymentsMethods.setText("Metódos de pago");
+        menuPaymentsMethods.setText("Metï¿½dos de pago");
         menuQTD.add(menuPaymentsMethods);
 
         setJMenuBar(menuQTD);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelDebts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelNotDebts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 24, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelDebts, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelNotDebts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 19, Short.MAX_VALUE))
-        );
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        getContentPane().add(panelDebts);
+        panelDebts.setLayout(new BorderLayout(0, 0));
+        panelDebts.add(labelDebts, BorderLayout.NORTH);
+        panelDebts.add(buttonPay, BorderLayout.SOUTH);
+        panelDebts.add(jScrollPane2);
+        getContentPane().add(panelNotDebts);
+        panelNotDebts.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        panelNotDebts.add(labelNotDebts);
+        ((JComponent) getContentPane()).setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         pack();
         setLocationRelativeTo(null);
     }
 	
 	private void setDataComponents() {
-		panelNotDebts.setVisible(debtsController.getDebts().size() > 0 ? false : true);
-		DefaultTableModel model = (DefaultTableModel) this.tableDebts.getModel();
-		for (Debt debt : this.debtsController.getDebts()) {
+		boolean empty = debtsController.getDebts().size() == 0;
+        panelDebts.setVisible(!empty);
+		panelNotDebts.setVisible(empty);
+		DefaultTableModel model = (DefaultTableModel) tableDebts.getModel();
+		int lines = model.getRowCount();
+		for (int i = 0; i < lines; i++) {
+			model.removeRow(0);
+		}
+		for (Debt debt : debtsController.getDebts()) {
+			System.out.println(debt);
 			model.addRow(new Object[]{debt.getDescription(), debt.getMemberPayment(), debt.getAmount()});
         }
-		
-		this.debtsController.addActionButtonPay(buttonPay);
+		debtsController.addActionButtonPay(buttonPay);
 	}
 	
 	public JButton getButtonPay() {
@@ -170,8 +127,7 @@ public class DebtsView extends JFrame implements Observer {
 
 	public void update(Observable o, Object arg) {
 		if (arg instanceof String) {
-            panelDebts.setVisible(false);
-            panelNotDebts.setVisible(true);
+			setDataComponents();
         }
 	}
 }
