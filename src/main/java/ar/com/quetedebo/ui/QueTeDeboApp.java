@@ -1,6 +1,8 @@
 package ar.com.quetedebo.ui;
 
 import ar.com.quetedebo.core.QueTeDebo;
+import ar.com.quetedebo.ui.admin.AdminUI;
+import ar.com.quetedebo.ui.debts.DebtsView;
 
 public class QueTeDeboApp {
 
@@ -10,6 +12,7 @@ public class QueTeDeboApp {
 		java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new DebtsView(queTeDebo).setVisible(true);
+                new AdminUI(queTeDebo).setVisible(true);
             }
         });
 	}
