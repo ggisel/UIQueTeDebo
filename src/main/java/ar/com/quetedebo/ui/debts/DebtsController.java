@@ -8,8 +8,8 @@ import java.util.Observer;
 
 import javax.swing.JButton;
 
-import ar.com.quetedebo.core.Debt;
 import ar.com.quetedebo.core.QueTeDebo;
+import ar.com.quetedebo.core.model.Debt;
 
 public class DebtsController implements Observer {
 	private QueTeDebo queTeDebo;

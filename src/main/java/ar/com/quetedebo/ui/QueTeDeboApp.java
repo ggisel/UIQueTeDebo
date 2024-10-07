@@ -11,8 +11,8 @@ public class QueTeDeboApp {
 		
 		java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DebtsView(queTeDebo).setVisible(true);
                 new AdminUI(queTeDebo).setVisible(true);
+                new DebtsView(queTeDebo).setVisible(true);
             }
         });
 	}

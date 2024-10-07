@@ -2,8 +2,9 @@ package ar.com.quetedebo.ui.admin;
 
 import javax.swing.JPanel;
 
-import ar.com.quetedebo.core.Debt;
 import ar.com.quetedebo.core.QueTeDebo;
+import ar.com.quetedebo.core.model.Debt;
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;

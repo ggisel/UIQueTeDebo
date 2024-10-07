@@ -8,8 +8,8 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
-import ar.com.quetedebo.core.Debt;
 import ar.com.quetedebo.core.QueTeDebo;
+import ar.com.quetedebo.core.model.Debt;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -61,7 +61,7 @@ public class DebtsView extends JFrame implements Observer {
 
             },
             new String [] {
-                "Descripciï¿½n", "Pagar a", "Monto"
+                "Descripción", "Pagar a", "Monto"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -81,12 +81,12 @@ public class DebtsView extends JFrame implements Observer {
         labelDebts.setText("Vas a pagar las siguientes deudas");
 
         labelNotDebts.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        labelNotDebts.setText("No tenï¿½s deudas para pagar");
+        labelNotDebts.setText("No tenés deudas para pagar");
 
         menuDebts.setText("Gastos");
         menuQTD.add(menuDebts);
 
-        menuPaymentsMethods.setText("Metï¿½dos de pago");
+        menuPaymentsMethods.setText("Metódos de pago");
         menuQTD.add(menuPaymentsMethods);
 
         setJMenuBar(menuQTD);
@@ -106,7 +106,6 @@ public class DebtsView extends JFrame implements Observer {
     }
 	
 	private void setDataComponents() {
-
 		boolean empty = debtsController.getDebts().size() == 0;
         panelDebts.setVisible(!empty);
 		panelNotDebts.setVisible(empty);
