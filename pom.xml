@@ -3,12 +3,12 @@
   <groupId>pp2grupo3</groupId>
   <artifactId>UIQueTeDebo</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  
-  <dependencies>
-    <dependency>
-        <groupId>ar.com.quetedebo</groupId>
-        <artifactId>CoreQueTeDebo</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-    </dependency>
-</dependencies>
+
+	<dependencies>
+		<dependency>
+			<groupId>ar.com.quetedebo</groupId>
+			<artifactId>CoreQueTeDebo</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 </project>

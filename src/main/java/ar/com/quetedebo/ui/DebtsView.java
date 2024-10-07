@@ -23,13 +23,11 @@ public class DebtsView extends JFrame implements Observer {
     private javax.swing.JPanel panelNotDebts;
     private javax.swing.JTable tableDebts;
 	
-    private QueTeDebo queTeDebo;
 	private DebtsController debtsController;
 
 	public DebtsView(QueTeDebo queTeDebo) {
-		this.queTeDebo = queTeDebo;
-		this.queTeDebo.addObserver(this);
-		this.debtsController = new DebtsController(queTeDebo, this);
+		queTeDebo.addObserver(this);
+		debtsController = new DebtsController(queTeDebo, this);
 		
 		initComponents();
 		setDataComponents();
@@ -155,22 +153,23 @@ public class DebtsView extends JFrame implements Observer {
     }
 	
 	private void setDataComponents() {
-		panelNotDebts.setVisible(debtsController.getDebts().size() > 0 ? false : true);
+		panelNotDebts.setVisible(debtsController.getDebts().size() == 0);
 		DefaultTableModel model = (DefaultTableModel) this.tableDebts.getModel();
-		for (Debt debt : this.debtsController.getDebts()) {
+		for (Debt debt : debtsController.getDebts()) {
 			model.addRow(new Object[]{debt.getDescription(), debt.getMemberPayment(), debt.getAmount()});
         }
 		
-		this.debtsController.addActionButtonPay(buttonPay);
+		debtsController.addActionButtonPay(buttonPay);
 	}
 	
 	public JButton getButtonPay() {
 		return buttonPay;
 	}
 
-	public void update(Observable o, Object arg) {
-		if (arg instanceof String) {
+	public void update(Observable o, Object paymentMethod) {
+		if (paymentMethod instanceof String) {
             panelDebts.setVisible(false);
+            labelNotDebts.setText("Pagaste tus deudas con " + paymentMethod);
             panelNotDebts.setVisible(true);
         }
 	}
