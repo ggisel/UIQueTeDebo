@@ -4,8 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import javax.swing.JButton;
-
 import ar.com.quetedebo.core.QueTeDebo;
 import ar.com.quetedebo.core.model.Debt;
 
@@ -16,6 +14,7 @@ public class DebtsController {
 	public DebtsController(QueTeDebo queTeDebo, DebtsView debtsView) {
 		this.debtsView = debtsView;
 		this.queTeDebo = queTeDebo;
+		addActionButtonPay();
 	}
 
 	public void pay() {
@@ -30,7 +29,7 @@ public class DebtsController {
 		return queTeDebo.getDebts();
 	}
 
-	public void addActionButtonPay(JButton buttonPay) {
+	public void addActionButtonPay() {
 		debtsView.getButtonPay().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				pay();

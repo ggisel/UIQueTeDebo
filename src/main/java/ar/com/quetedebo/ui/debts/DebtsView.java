@@ -1,8 +1,12 @@
 package ar.com.quetedebo.ui.debts;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -10,11 +14,6 @@ import javax.swing.table.DefaultTableModel;
 
 import ar.com.quetedebo.core.QueTeDebo;
 import ar.com.quetedebo.core.model.Debt;
-
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 
 public class DebtsView extends JFrame implements Observer {
 	private static final long serialVersionUID = 1L;
@@ -33,9 +32,8 @@ public class DebtsView extends JFrame implements Observer {
 
 	public DebtsView(QueTeDebo queTeDebo) {
 		queTeDebo.addObserver(this);
-		debtsController = new DebtsController(queTeDebo, this);
-		
 		initComponents();
+		debtsController = new DebtsController(queTeDebo, this);
 		setDataComponents();
 	}
 
@@ -54,14 +52,13 @@ public class DebtsView extends JFrame implements Observer {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("QueTeDebo");
-        setResizable(false);
 
         tableDebts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Descripción", "Pagar a", "Monto"
+                "Descripciï¿½n", "Pagar a", "Monto"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -81,12 +78,12 @@ public class DebtsView extends JFrame implements Observer {
         labelDebts.setText("Vas a pagar las siguientes deudas");
 
         labelNotDebts.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        labelNotDebts.setText("No tenés deudas para pagar");
+        labelNotDebts.setText("No tenï¿½s deudas para pagar");
 
         menuDebts.setText("Gastos");
         menuQTD.add(menuDebts);
 
-        menuPaymentsMethods.setText("Metódos de pago");
+        menuPaymentsMethods.setText("Metï¿½dos de pago");
         menuQTD.add(menuPaymentsMethods);
 
         setJMenuBar(menuQTD);
@@ -115,10 +112,8 @@ public class DebtsView extends JFrame implements Observer {
 			model.removeRow(0);
 		}
 		for (Debt debt : debtsController.getDebts()) {
-			System.out.println(debt);
 			model.addRow(new Object[]{debt.getDescription(), debt.getMemberPayment(), debt.getAmount()});
         }
-		debtsController.addActionButtonPay(buttonPay);
 	}
 	
 	public JButton getButtonPay() {
@@ -127,9 +122,7 @@ public class DebtsView extends JFrame implements Observer {
 
 	public void update(Observable o, Object paymentMethod) {
 		if (paymentMethod instanceof String) {
-            panelDebts.setVisible(false);
             labelNotDebts.setText("Pagaste tus deudas con " + paymentMethod);
-            panelNotDebts.setVisible(true);
             setDataComponents();
 		}
 	}
