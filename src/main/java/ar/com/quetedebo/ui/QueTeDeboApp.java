@@ -7,7 +7,14 @@ import ar.com.quetedebo.ui.debts.DebtsView;
 public class QueTeDeboApp {
 
 	public static void main(String[] args) {
-		final QueTeDebo queTeDebo = new QueTeDebo();
+		if (args.length < 2) {
+            throw new IllegalArgumentException("Both 'extensionsPath' and 'dataPath' are required. Please provide them as the first and second arguments.");
+        }
+
+        String extensionsPath = args[0];
+        String dataPath = args[1];
+
+		final QueTeDebo queTeDebo = new QueTeDebo(extensionsPath, dataPath);
 		
 		java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
