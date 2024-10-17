@@ -12,8 +12,8 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
+import ar.com.quetedebo.core.Debt;
 import ar.com.quetedebo.core.QueTeDebo;
-import ar.com.quetedebo.core.model.Debt;
 
 public class DebtsView extends JFrame implements Observer {
 	private static final long serialVersionUID = 1L;
@@ -71,13 +71,13 @@ public class DebtsView extends JFrame implements Observer {
         });
         jScrollPane2.setViewportView(tableDebts);
 
-        buttonPay.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        buttonPay.setFont(new java.awt.Font("Tahoma", 1, 12));
         buttonPay.setText("Pagar");
 
-        labelDebts.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelDebts.setFont(new java.awt.Font("Tahoma", 1, 14));
         labelDebts.setText("Vas a pagar las siguientes deudas");
 
-        labelNotDebts.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelNotDebts.setFont(new java.awt.Font("Tahoma", 1, 14));
         labelNotDebts.setText("No ten�s deudas para pagar");
 
         menuDebts.setText("Gastos");

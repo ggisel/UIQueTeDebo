@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import ar.com.quetedebo.core.QueTeDebo;
-import ar.com.quetedebo.core.model.Debt;
+import ar.com.quetedebo.core.Debt;
 
 public class DebtsController {
 	private QueTeDebo queTeDebo;
@@ -19,7 +19,7 @@ public class DebtsController {
 
 	public void pay() {
 		try {
-			queTeDebo.pay();
+			queTeDebo.payRequest("BBva");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
