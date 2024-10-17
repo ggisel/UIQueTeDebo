@@ -8,6 +8,7 @@ import java.util.Observer;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
@@ -15,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import ar.com.quetedebo.core.Debt;
 import ar.com.quetedebo.core.QueTeDebo;
 
+@SuppressWarnings("deprecation")
 public class DebtsView extends JFrame implements Observer {
 	private static final long serialVersionUID = 1L;
 	private javax.swing.JButton buttonPay;
@@ -27,6 +29,7 @@ public class DebtsView extends JFrame implements Observer {
     private javax.swing.JPanel panelDebts;
     private javax.swing.JPanel panelNotDebts;
     private javax.swing.JTable tableDebts;
+    private javax.swing.JComboBox<String> paymentMethodSelector;
 	
 	private DebtsController debtsController;
 
@@ -34,9 +37,10 @@ public class DebtsView extends JFrame implements Observer {
 		queTeDebo.addObserver(this);
 		initComponents();
 		debtsController = new DebtsController(queTeDebo, this);
-		setDataComponents();
+		setDataComponents(false);
 	}
 
+	@SuppressWarnings("serial")
 	private void initComponents() {
 
         panelDebts = new javax.swing.JPanel();
@@ -49,6 +53,7 @@ public class DebtsView extends JFrame implements Observer {
         menuQTD = new javax.swing.JMenuBar();
         menuDebts = new javax.swing.JMenu();
         menuPaymentsMethods = new javax.swing.JMenu();
+        paymentMethodSelector = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("QueTeDebo");
@@ -58,7 +63,7 @@ public class DebtsView extends JFrame implements Observer {
 
             },
             new String [] {
-                "Descripciï¿½n", "Pagar a", "Monto"
+                "Descripción", "Pagar a", "Monto"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -78,21 +83,25 @@ public class DebtsView extends JFrame implements Observer {
         labelDebts.setText("Vas a pagar las siguientes deudas");
 
         labelNotDebts.setFont(new java.awt.Font("Tahoma", 1, 14));
-        labelNotDebts.setText("No tenï¿½s deudas para pagar");
+        labelNotDebts.setText("No tenés deudas para pagar");
 
         menuDebts.setText("Gastos");
         menuQTD.add(menuDebts);
 
-        menuPaymentsMethods.setText("Metï¿½dos de pago");
+        menuPaymentsMethods.setText("Metódos de pago");
         menuQTD.add(menuPaymentsMethods);
 
         setJMenuBar(menuQTD);
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        getContentPane().add(paymentMethodSelector);
         getContentPane().add(panelDebts);
+        
         panelDebts.setLayout(new BorderLayout(0, 0));
         panelDebts.add(labelDebts, BorderLayout.NORTH);
+        
         panelDebts.add(buttonPay, BorderLayout.SOUTH);
         panelDebts.add(jScrollPane2);
+        
         getContentPane().add(panelNotDebts);
         panelNotDebts.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         panelNotDebts.add(labelNotDebts);
@@ -102,10 +111,12 @@ public class DebtsView extends JFrame implements Observer {
         setLocationRelativeTo(null);
     }
 	
-	private void setDataComponents() {
-		boolean empty = debtsController.getDebts().size() == 0;
-        panelDebts.setVisible(!empty);
-		panelNotDebts.setVisible(empty);
+	private void setDataComponents(boolean pagado) {
+		paymentMethodSelector.setModel(new javax.swing.DefaultComboBoxModel<>(debtsController.getPaymentsMethod()));
+
+        panelDebts.setVisible(!pagado);
+		panelNotDebts.setVisible(pagado);
+		paymentMethodSelector.setVisible(!pagado);;
 		DefaultTableModel model = (DefaultTableModel) tableDebts.getModel();
 		int lines = model.getRowCount();
 		for (int i = 0; i < lines; i++) {
@@ -119,11 +130,15 @@ public class DebtsView extends JFrame implements Observer {
 	public JButton getButtonPay() {
 		return buttonPay;
 	}
+	
+	public JComboBox<String> getPaymentMethodsSelector() {
+		return paymentMethodSelector;
+	}
 
 	public void update(Observable o, Object paymentMethod) {
 		if (paymentMethod instanceof String) {
             labelNotDebts.setText("Pagaste tus deudas con " + paymentMethod);
-            setDataComponents();
+            setDataComponents(true);
 		}
 	}
 }

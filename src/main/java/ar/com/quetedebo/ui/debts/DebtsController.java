@@ -17,9 +17,9 @@ public class DebtsController {
 		addActionButtonPay();
 	}
 
-	public void pay() {
+	public void pay(String paymentMethod) {
 		try {
-			queTeDebo.payRequest("BBva");
+			queTeDebo.payRequest(paymentMethod);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -28,11 +28,16 @@ public class DebtsController {
 	public List<Debt> getDebts() {
 		return queTeDebo.getDebts();
 	}
+	
+	public String[] getPaymentsMethod() {
+		String[] paymentMethodsSelector = queTeDebo.getPaymentsMethod().toArray(new String[0]);
+		return paymentMethodsSelector;
+	}
 
 	public void addActionButtonPay() {
 		debtsView.getButtonPay().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				pay();
+				pay(debtsView.getPaymentMethodsSelector().getSelectedItem().toString());
 			}
 		});
 	}
