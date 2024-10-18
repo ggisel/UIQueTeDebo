@@ -18,6 +18,7 @@ public class DebtsController {
 	}
 
 	public void pay(String paymentMethod) {
+		// FIXME cambiar el nombre del metodo
 		try {
 			queTeDebo.payRequest(paymentMethod);
 		} catch (Exception e) {

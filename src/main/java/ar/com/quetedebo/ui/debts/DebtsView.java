@@ -138,7 +138,8 @@ public class DebtsView extends JFrame implements Observer {
 	public void update(Observable o, Object paymentMethod) {
 		if (paymentMethod instanceof String) {
             labelNotDebts.setText("Pagaste tus deudas con " + paymentMethod);
-            setDataComponents(true);
+            boolean validacion = !paymentMethod.equals("add");
+            setDataComponents(validacion);
 		}
 	}
 }
