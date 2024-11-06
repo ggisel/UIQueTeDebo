@@ -10,5 +10,10 @@
 			<artifactId>CoreQueTeDebo</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>ar.com.quetedebo</groupId>
+			<artifactId>StorageQueTeDebo</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
     </dependencies>
 </project>
