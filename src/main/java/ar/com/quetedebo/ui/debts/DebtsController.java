@@ -29,7 +29,7 @@ public class DebtsController {
 	public List<Debt> getDebts() {
 		return queTeDebo.getDebts();
 	}
-	
+
 	public String[] getPaymentsMethod() {
 		String[] paymentMethodsSelector = queTeDebo.getPaymentsMethods().toArray(new String[0]);
 		return paymentMethodsSelector;

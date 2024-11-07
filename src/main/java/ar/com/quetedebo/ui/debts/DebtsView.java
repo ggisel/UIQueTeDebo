@@ -30,7 +30,7 @@ public class DebtsView extends JFrame implements Observer {
     private javax.swing.JPanel panelNotDebts;
     private javax.swing.JTable tableDebts;
     private javax.swing.JComboBox<String> paymentMethodSelector;
-	
+
 	private DebtsController debtsController;
 
 	public DebtsView(QueTeDebo queTeDebo) {
@@ -63,7 +63,7 @@ public class DebtsView extends JFrame implements Observer {
 
             },
             new String [] {
-                "Descripción", "Pagar a", "Monto"
+                "Descripciï¿½n", "Pagar a", "Monto"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -83,25 +83,25 @@ public class DebtsView extends JFrame implements Observer {
         labelDebts.setText("Vas a pagar las siguientes deudas");
 
         labelNotDebts.setFont(new java.awt.Font("Tahoma", 1, 14));
-        labelNotDebts.setText("No tenés deudas para pagar");
+        labelNotDebts.setText("No tenï¿½s deudas para pagar");
 
         menuDebts.setText("Gastos");
         menuQTD.add(menuDebts);
 
-        menuPaymentsMethods.setText("Metódos de pago");
+        menuPaymentsMethods.setText("Metï¿½dos de pago");
         menuQTD.add(menuPaymentsMethods);
 
         setJMenuBar(menuQTD);
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         getContentPane().add(paymentMethodSelector);
         getContentPane().add(panelDebts);
-        
+
         panelDebts.setLayout(new BorderLayout(0, 0));
         panelDebts.add(labelDebts, BorderLayout.NORTH);
-        
+
         panelDebts.add(buttonPay, BorderLayout.SOUTH);
         panelDebts.add(jScrollPane2);
-        
+
         getContentPane().add(panelNotDebts);
         panelNotDebts.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         panelNotDebts.add(labelNotDebts);
@@ -130,7 +130,7 @@ public class DebtsView extends JFrame implements Observer {
 	public JButton getButtonPay() {
 		return buttonPay;
 	}
-	
+
 	public JComboBox<String> getPaymentMethodsSelector() {
 		return paymentMethodSelector;
 	}
