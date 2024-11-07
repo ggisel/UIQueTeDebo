@@ -31,7 +31,7 @@ public class DebtsController {
 	}
 
 	public String[] getPaymentsMethod() {
-		String[] paymentMethodsSelector = queTeDebo.getPaymentsMethod().toArray(new String[0]);
+		String[] paymentMethodsSelector = queTeDebo.getPaymentsMethods().toArray(new String[0]);
 		return paymentMethodsSelector;
 	}
 
