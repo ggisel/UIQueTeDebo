@@ -19,7 +19,7 @@ public class DebtsController {
 
 	public void pay() {
 		try {
-			queTeDebo.payRequest("BBva");
+			queTeDebo.payRequest("BBVA");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
