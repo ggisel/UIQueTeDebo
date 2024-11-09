@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 import ar.com.quetedebo.core.Debt;
 import ar.com.quetedebo.core.QueTeDebo;
+import ar.com.quetedebo.core.QueTeDeboDTO;
 
 @SuppressWarnings("deprecation")
 public class DebtsView extends JFrame implements Observer {
@@ -135,10 +136,12 @@ public class DebtsView extends JFrame implements Observer {
 		return paymentMethodSelector;
 	}
 
-	public void update(Observable o, Object paymentMethod) {
-		if (paymentMethod instanceof String) {
+	public void update(Observable o, Object arg) {
+		if (arg instanceof QueTeDeboDTO) {
+			QueTeDeboDTO data = (QueTeDeboDTO) arg;
+			String paymentMethod = data.getPaymentMethod();
             labelNotDebts.setText("Pagaste tus deudas con " + paymentMethod);
-            boolean validacion = !paymentMethod.equals("add");
+            boolean validacion = data.getAction().equals("pay");
             setDataComponents(validacion);
 		}
 	}
